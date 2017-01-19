@@ -1,15 +1,14 @@
-/// <reference path="Input.ts" />
 /// <reference path="Population.ts" />
 
 class Genetic{
-    input: Input;
-    population: Population;
+    static input: Array<number> = [];
+    static population: Population;
 
-    constructor(input: Input){
-        this.input = input;
+    static setInput(input: Array<number>){
+        Genetic.input = input;
     }
 
-    createPopulation(count?: number){
-        this.population = new Population();
+    static createPopulation(generation: Generation){
+        return Genetic.population = new Population(generation);
     }
 }

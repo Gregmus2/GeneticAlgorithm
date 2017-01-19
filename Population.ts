@@ -1,13 +1,13 @@
 /// <reference path="Generation.ts" />
 
 class Population{
-    generations: Generation[];
+    generations: Array<Generation> = [];
 
-    constructor(){
-        this.addGeneration();
+    constructor(generation: Generation){
+        this.addGeneration(generation);
     }
 
-    addGeneration(generation?: Generation){
-        this.generations.push(generation|new Generation());
+    addGeneration(generation: Generation){
+        this.generations.push(generation);
     }
 }

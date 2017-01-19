@@ -1,4 +1,5 @@
-/// <reference path="Input.ts" />
 /// <reference path="Genetic.ts" />
 
-let genetic = new Genetic(new Input(158, 123, 5));
+Genetic.setInput([158, 123, 5]);
+Genetic.createPopulation(new Generation(5));
+console.log(Genetic.population);

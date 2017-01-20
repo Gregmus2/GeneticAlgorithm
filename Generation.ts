@@ -54,17 +54,21 @@ class Generation{
                 let mother = bests_of_generation[i];
                 let father = bests_of_generation[j];
                 let childes = Common.crossover(mother.color, father.color, Math.round(Math.random()*(father.color.length-2)+1));
+                // 10% вероятность мутации
+                if (Math.random() < 0.01){
+                    childes[Math.round(Math.random())][Math.round(Math.random()*father.color.length-1)] = Math.round(Math.random()*255);
+                }
                 next_gen.addIndividual(new Individual(childes[0]));
                 next_gen.addIndividual(new Individual(childes[1]));
             }
         }
-        console.log(next_gen.individuals.length);
+        // console.log(next_gen.individuals.length);
         next_gen.calcCoefficients();
         next_gen.calcSelection();
-        /** TODO мутация при кроссинговере */
-        if (/*next_gen.S_avg > generation.S_avg*/Math.random()*10 < 1){
-            next_gen.mutate();
-        }
+        /** TODO одно поколение всегда, новые особи прибавляются к популяции, "плохие" отсеиваются */
+        // if (/*next_gen.S_avg > generation.S_avg*/Math.random()*10 < 1){
+        //     next_gen.mutate();
+        // }
         return next_gen;
     }
 

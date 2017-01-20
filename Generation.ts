@@ -56,7 +56,7 @@ class Generation{
                 let childes = Common.crossover(mother.color, father.color, Math.round(Math.random()*(father.color.length-2)+1));
                 // 10% вероятность мутации
                 if (Math.random() < 0.01){
-                    childes[Math.round(Math.random())][Math.round(Math.random()*father.color.length-1)] = Math.round(Math.random()*255);
+                    childes[Math.round(Math.random())][Math.round(Math.random()*(father.color.length-1))] = Math.round(Math.random()*255);
                 }
                 next_gen.addIndividual(new Individual(childes[0]));
                 next_gen.addIndividual(new Individual(childes[1]));
@@ -66,9 +66,6 @@ class Generation{
         next_gen.calcCoefficients();
         next_gen.calcSelection();
         /** TODO одно поколение всегда, новые особи прибавляются к популяции, "плохие" отсеиваются */
-        // if (/*next_gen.S_avg > generation.S_avg*/Math.random()*10 < 1){
-        //     next_gen.mutate();
-        // }
         return next_gen;
     }
 
@@ -81,10 +78,9 @@ class Generation{
     }
 
     getBests(){
-        let count = (this.individuals.length > Genetic.generation_length) ? Math.round(this.individuals.length/4) : Math.round(this.individuals.length/2);
         this.individuals.sort(function (a, b) {
             return a.S - b.S;
         });
-        return this.individuals.slice(0, count);
+        return this.individuals = this.individuals.slice(0, Genetic.generation_length);
     }
 }

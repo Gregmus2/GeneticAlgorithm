@@ -2,15 +2,16 @@
 
 class Individual{
     color: Array<number> = [];
-    S: number = 0;
+    S: number = 0; // survival coefficient
     R: number; // reverse coefficient
     C: number; // coefficient selection
 
     constructor(color: Array<number>){
        this.color = color;
+       this.calcCoefficients();
     }
 
-    calcCoefficients(){
+    private calcCoefficients(){
         for(let i in this.color){
             this.S += Math.abs(Genetic.input[i] - this.color[i]);
         }

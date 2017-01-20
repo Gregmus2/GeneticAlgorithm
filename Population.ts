@@ -10,4 +10,10 @@ class Population{
     addGeneration(generation: Generation){
         this.generations.push(generation);
     }
+
+    evolve(){
+        let last_gen = this.generations[this.generations.length-1];
+        let generation = Generation.evolveFrom(last_gen);
+        this.addGeneration(generation);
+    }
 }

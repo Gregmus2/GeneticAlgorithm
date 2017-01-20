@@ -6,9 +6,9 @@ class Generation{
     R: number = 0;
     S_avg: number;
 
-    constructor(count?: number){
-        if (count) {
-            for (let i = 0; i < count; i++) {
+    constructor(automatic: boolean = false){
+        if (automatic) {
+            for (let i = 0; i < Genetic.generation_length; i++) {
                 this.addIndividual();
             }
             this.calcCoefficients();
@@ -58,10 +58,11 @@ class Generation{
                 next_gen.addIndividual(new Individual(childes[1]));
             }
         }
+        console.log(next_gen.individuals.length);
         next_gen.calcCoefficients();
         next_gen.calcSelection();
         /** TODO мутация 1% в любом случае */
-        if (next_gen.S_avg > generation.S_avg){
+        if (/*next_gen.S_avg > generation.S_avg*/Math.random()*10 < 1){
             next_gen.mutate();
         }
         return next_gen;
@@ -76,7 +77,7 @@ class Generation{
     }
 
     getBests(){
-        let count = Math.round(this.individuals.length/2);
+        let count = (this.individuals.length > Genetic.generation_length) ? Math.round(this.individuals.length/4) : Math.round(this.individuals.length/2);
         this.individuals.sort(function (a, b) {
             return a.S - b.S;
         });

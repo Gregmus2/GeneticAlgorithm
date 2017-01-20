@@ -4,6 +4,7 @@ class Genetic{
     static input: Array<number> = [];
     // планируется массив популяций
     static population: Population;
+    static generation_length: number;
 
     static setInput(input: Array<number>){
         Genetic.input = input;
@@ -15,5 +16,9 @@ class Genetic{
 
     static evolve(){
         Genetic.population.evolve();
+    }
+
+    static setGenerationLength(length: number){
+        Genetic.generation_length = length;
     }
 }

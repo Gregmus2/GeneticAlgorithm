@@ -61,7 +61,7 @@ class Generation{
         console.log(next_gen.individuals.length);
         next_gen.calcCoefficients();
         next_gen.calcSelection();
-        /** TODO мутация 1% в любом случае */
+        /** TODO мутация при кроссинговере */
         if (/*next_gen.S_avg > generation.S_avg*/Math.random()*10 < 1){
             next_gen.mutate();
         }

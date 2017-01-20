@@ -2,7 +2,7 @@
 /// <reference path="Common.ts" />
 
 Genetic.setInput([158, 123, 5]);
-Genetic.setGenerationLength(10);
+Genetic.setGenerationLength(5);
 Genetic.createPopulation();
 
 let i = 1;

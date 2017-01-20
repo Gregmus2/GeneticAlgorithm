@@ -35,6 +35,7 @@ class Population{
     }
 
     evolve(){
+        let processing = true;
         let bests_of_generation = this.getBests();
         this.individuals = bests_of_generation;
         for (let i = 0; i < Genetic.length_of_bests; i++){
@@ -46,14 +47,18 @@ class Population{
                 if (Math.random() < 0.01){
                     childes[Math.round(Math.random())][Math.round(Math.random()*(father.color.length-1))] = Math.round(Math.random()*255);
                 }
-                this.addIndividual(new Individual(childes[0]));
-                this.addIndividual(new Individual(childes[1]));
+                let individual1 = new Individual(childes[0]);
+                let individual2 = new Individual(childes[1]);
+                if (individual1.S == 0 || individual2.S == 0){
+                    processing = false;
+                }
+                this.addIndividual(individual1);
+                this.addIndividual(individual2);
             }
         }
         this.calcCoefficients();
         this.calcSelection();
-        /** TODO одно поколение всегда, новые особи прибавляются к популяции, "плохие" отсеиваются */
-        return this.S_avg;
+        return processing;//this.S_avg;
     }
 
     getBests(){
